@@ -34,12 +34,6 @@ public class File {
     private LocalDate endDate;
 
     @OneToMany(mappedBy = "file", fetch = FetchType.LAZY)
-    private List<EnterBalance> enterBalances;
-
-    @OneToMany(mappedBy = "file", fetch = FetchType.LAZY)
-    private List<ProceedBalance> proceedBalances;
-
-    @OneToMany(mappedBy = "file", fetch = FetchType.LAZY)
-    private List<MoneyFlow> moneyFlows;
+    private List<SummaryBalance> summaryBalances;
 
 }

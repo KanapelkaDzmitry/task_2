@@ -24,6 +24,6 @@ public class EnterBalance extends BaseEntity {
     private double passive;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "file_id")
-    private File file;
+    @JoinColumn(name = "summary_balance_id")
+    private SummaryBalance summaryBalance;
 }

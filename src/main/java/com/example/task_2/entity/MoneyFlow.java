@@ -23,6 +23,6 @@ public class MoneyFlow extends BaseEntity {
     private double credit;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "file_id")
-    private File file;
+    @JoinColumn(name = "summary_balance_id")
+    private SummaryBalance summaryBalance;
 }
