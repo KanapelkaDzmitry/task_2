@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 @Builder
@@ -14,10 +17,12 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Turnover extends BaseEntity{
+public class MoneyFlow extends BaseEntity {
 
-    private String turnoverName;
     private double debit;
     private double credit;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "file_id")
+    private File file;
 }

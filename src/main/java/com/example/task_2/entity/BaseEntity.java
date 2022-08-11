@@ -13,9 +13,8 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class BaseEntity implements Serializable {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private Long accountId;
 }

@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 @Builder
@@ -17,8 +20,10 @@ import javax.persistence.Entity;
 @Setter
 public class EnterBalance extends BaseEntity {
 
-    private String enterBalanceName;
-    private int accounting;
-    private double isActive;
-    private double isPassive;
+    private double active;
+    private double passive;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "file_id")
+    private File file;
 }
