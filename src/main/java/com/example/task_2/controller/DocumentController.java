@@ -2,7 +2,6 @@ package com.example.task_2.controller;
 
 import com.example.task_2.service.DocumentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +21,6 @@ public class DocumentController {
 
     @GetMapping("/parse")
     public void uploadDocument(@RequestParam(value = "file") MultipartFile file) {
-        documentService.parseDocumentToDatabase(file);
+        documentService.saveDocumentToDatabase(file);
     }
 }

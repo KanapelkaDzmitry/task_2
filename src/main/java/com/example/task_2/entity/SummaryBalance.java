@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -27,6 +28,6 @@ public class SummaryBalance extends BaseEntity{
     @JoinColumn(name = "class_balance_id")
     private ClassBalance classBalance;
 
-    @OneToMany(mappedBy = "summaryBalance", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "summaryBalance", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CommonBalance> commonBalances;
 }

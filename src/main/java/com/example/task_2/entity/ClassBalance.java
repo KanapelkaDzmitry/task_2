@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -30,7 +31,7 @@ public class ClassBalance{
 
     private String className;
 
-    @OneToMany(mappedBy = "classBalance", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "classBalance", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SummaryBalance> summaryBalances;
 
     @ManyToOne(fetch = FetchType.LAZY)

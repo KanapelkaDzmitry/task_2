@@ -31,7 +31,7 @@ public class CommonBalance extends BaseEntity {
     private InnerBalance innerBalance;
 
     @Embedded
-    private MoneyTurnover moneyTurnover0;
+    private MoneyTurnover moneyTurnover;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "summary_balance_id")
