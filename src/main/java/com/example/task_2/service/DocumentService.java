@@ -1,23 +1,22 @@
 package com.example.task_2.service;
 
+import com.example.task_2.entity.Document;
+import com.example.task_2.repository.DocumentRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Qualifier;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 
 @Service
 @RequiredArgsConstructor
 public class DocumentService {
 
     private final DocumentParserService documentParserService;
+    private final DocumentRepository documentRepository;
 
-    public void parseDocumentToDatabase(MultipartFile file) {
-        try {
-            documentParserService.parseFromDocument(file);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    @SneakyThrows
+    public void saveDocumentToDatabase(MultipartFile file) {
+        Document document = documentParserService.createDocument(file);
+        documentRepository.save(document);
     }
 }
