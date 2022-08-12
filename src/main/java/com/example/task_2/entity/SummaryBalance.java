@@ -14,23 +14,19 @@ import javax.persistence.OneToMany;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 public class SummaryBalance extends BaseEntity{
 
-    @OneToMany(mappedBy = "summaryBalance", fetch = FetchType.LAZY)
-    private List<EnterBalance> enterBalanceList;
-
-    @OneToMany(mappedBy = "summaryBalance", fetch = FetchType.LAZY)
-    private List<ProceedBalance> proceedBalances;
-
-    @OneToMany(mappedBy = "summaryBalance", fetch = FetchType.LAZY)
-    private List<MoneyFlow> moneyFlowList;
+    private Long accountId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "file_id")
-    private File file;
+    @JoinColumn(name = "document_id")
+    private Document document;
+
+    @OneToMany(mappedBy = "summaryBalance", fetch = FetchType.LAZY)
+    private List<CommonBalance> commonBalances;
 }

@@ -13,27 +13,26 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-public class File {
+public class Document {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String fileName;
+    private String documentName;
     private LocalDate startDate;
     private LocalDate endDate;
 
-    @OneToMany(mappedBy = "file", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "document", fetch = FetchType.LAZY)
     private List<SummaryBalance> summaryBalances;
 
 }
