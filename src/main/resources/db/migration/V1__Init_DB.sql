@@ -37,32 +37,45 @@ create table document
     primary key (id)
 );
 
+create table class_balance
+(
+    id          bigserial not null,
+    class_name  varchar(255),
+    document_id int8,
+    primary key (id)
+);
+
 create table summary_balance
 (
-    id         bigserial not null,
-    account_id int8,
-    document_id    int8,
+    id          bigserial not null,
+    account_id  int8,
+    class_balance_id int8,
     primary key (id)
 );
 
 create table common_balance
 (
-    id                  bigserial not null,
-    account_id          int8,
+    id                    bigserial not null,
+    account_id            int8,
     inner_balance_active  double precision,
     inner_balance_passive double precision,
     outer_balance_active  double precision,
     outer_balance_passive double precision,
-    debit               double precision,
-    credit              double precision,
-    summary_balance_id  int8,
+    debit                 double precision,
+    credit                double precision,
+    summary_balance_id    int8,
     primary key (id)
 );
 
-alter table if exists summary_balance
-    add constraint forgein_key_summary_balance_to_document
+alter table if exists class_balance
+    add constraint forgein_key_class_balance_to_document
     foreign key (document_id)
     references document;
+
+alter table if exists summary_balance
+    add constraint forgein_key_summary_balance_to_class_balance
+    foreign key (class_balance_id)
+    references class_balance;
 
 alter table if exists common_balance
     add constraint forgein_key_common_balance_to_summary_balance

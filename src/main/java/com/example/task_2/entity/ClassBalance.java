@@ -8,6 +8,9 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -19,14 +22,18 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class SummaryBalance extends BaseEntity{
+public class ClassBalance{
 
-    private Long accountId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String className;
+
+    @OneToMany(mappedBy = "classBalance", fetch = FetchType.LAZY)
+    private List<SummaryBalance> summaryBalances;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "class_balance_id")
-    private ClassBalance classBalance;
-
-    @OneToMany(mappedBy = "summaryBalance", fetch = FetchType.LAZY)
-    private List<CommonBalance> commonBalances;
+    @JoinColumn(name = "document_id")
+    private Document document;
 }

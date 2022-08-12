@@ -33,6 +33,6 @@ public class Document {
     private LocalDate endDate;
 
     @OneToMany(mappedBy = "document", fetch = FetchType.LAZY)
-    private List<SummaryBalance> summaryBalances;
+    private List<ClassBalance> classBalances;
 
 }
